@@ -85,7 +85,7 @@ async function createPolestarWidget(batteryData, odometerData, vehicle) {
     "CHARGER_CONNECTION_STATUS_CONNECTED";
   const chargingAmps = batteryData.chargingCurrentAmps ?? 0;
   const chargingWatts = batteryData.chargingPowerWatts ?? 0;
-  const chargingKw = parseInt(chargingWatts / 1000);
+  const chargingKw = Math.round(chargingWatts/100.0)/10.0; // convert to kW and round to 1 decimal
 
   // Prepare image
   if (!vehicle.content.images.studio.angles.includes(IMAGE_ANGLE)) {
@@ -159,9 +159,15 @@ async function createPolestarWidget(batteryData, odometerData, vehicle) {
     const batteryChargingTimeStack = batteryInfoStack.addStack();
     const remainingChargeTimeHours = parseInt(remainingChargingTime / 60);
     const remainingChargeTimeMinsRemainder = remainingChargingTime % 60;
+    const fraction = ({ 15: "¼", 30: "½", 45: "¾" })[remainingChargeTimeMinsRemainder] || "";
+    const timeStr =
+      remainingChargingTime >= 120
+        ? `${remainingChargeTimeHours}h`
+        : remainingChargingTime >= 60
+          ? `${remainingChargeTimeHours}${fraction}h`
+          : `${remainingChargeTimeMinsRemainder}m`;
     const chargingTimeElement = batteryChargingTimeStack.addText(
-      `${chargingKw} kW  -  ${remainingChargeTimeHours}h ${remainingChargeTimeMinsRemainder}m`
-    );
+      `${chargingKw} kW  -  ${timeStr}`);
     chargingTimeElement.font = Font.mediumSystemFont(10);
     chargingTimeElement.textOpacity = 0.9;
     chargingTimeElement.textColor = DARK_MODE ? Color.white() : Color.black();
