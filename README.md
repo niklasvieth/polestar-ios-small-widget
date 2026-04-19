@@ -26,7 +26,7 @@ Since the official Polestar App does not support any kind of widgets for iOS, I 
 
         [![Download with ScriptDude](https://scriptdu.de/download.svg)](https://scriptdu.de?name=Polestar%20Small%20SoC%20Widget&source=https%3A%2F%2Fgist.githubusercontent.com%2Fniklasvieth%2Fa45f6e33c117421deb4611e73ad83651%2Fraw%2Fb959e6a0bc2d31b2b455dd5543daf5c458a2d275%2Fpolestar-small-widget.js&docs=https%3A%2F%2Fgithub.com%2Fniklasvieth%2Fpolestar-ios-small-widget%2Fblob%2Fmain%2FREADME.md)
 
-    - Copy the content of [polestar-small-widget.js](https://gist.github.com/niklasvieth/159c13dd7ef94bd608358ce964b66c7c), create a new script in `Scriptable`, paste the content and rename it to `Polestar Small SoC Widget`.
+    - Copy the content of [polestar-small-widget.js](https://gist.github.com/niklasvieth/a45f6e33c117421deb4611e73ad83651), create a new script in `Scriptable`, paste the content and rename it to `Polestar Small SoC Widget`.
 
 3. Replace the placeholder values for `POLESTAR_EMAIL` and `POLESTAR_PASSWORD` with your Polestar login credentials.
 
@@ -39,7 +39,7 @@ Since the official Polestar App does not support any kind of widgets for iOS, I 
 4. [Optional Configuration] You can decide if you prefer the relative live counter or the absolute timestamp for the last seen date in the widget footer. Default is the relative format. Change the value to `false` if you prefer the absolute date. You can additionally choose the angle of the image to be shown in the widget, change the battery color threshold values and enable miles instead of kilometer values.  
 
     ```js
-    const IMAGE_ANGLE = "0"; // Possible values 0,1,2,3,4,5
+    const IMAGE_ANGLE = 5; // Possible values 0,1,2,3,4,5
     const RANGE_IN_MILES = false; // true
     const LAST_SEEN_RELATIVE_DATE = false; // true
 
